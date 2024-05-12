@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "import-export-entries": {
+      "idField": "sku"
+    }
+  },
+  "attributes": {
+    "sku": {
+      "type": "string",
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}
