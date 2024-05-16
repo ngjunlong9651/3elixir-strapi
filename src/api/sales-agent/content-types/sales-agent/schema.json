@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sales-agent",
     "pluralName": "sales-agents",
-    "displayName": "salesAgent"
+    "displayName": "salesAgent",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,9 +18,9 @@
     "name": {
       "type": "string"
     },
-    "order": {
+    "orders": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::order.order",
       "inversedBy": "sales_agents"
     }

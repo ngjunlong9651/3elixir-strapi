@@ -64,9 +64,9 @@
     },
     "sales_agents": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::sales-agent.sales-agent",
-      "mappedBy": "order"
+      "mappedBy": "orders"
     }
   }
 }

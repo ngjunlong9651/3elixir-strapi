@@ -392,7 +392,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     orderProducts: Attribute.JSON;
     sales_agents: Attribute.Relation<
       'api::order.order',
-      'oneToMany',
+      'manyToMany',
       'api::sales-agent.sales-agent'
     >;
     createdAt: Attribute.DateTime;
@@ -572,6 +572,7 @@ export interface ApiSalesAgentSalesAgent extends Schema.CollectionType {
     singularName: 'sales-agent';
     pluralName: 'sales-agents';
     displayName: 'salesAgent';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -579,9 +580,9 @@ export interface ApiSalesAgentSalesAgent extends Schema.CollectionType {
   attributes: {
     agentID: Attribute.String;
     name: Attribute.String;
-    order: Attribute.Relation<
+    orders: Attribute.Relation<
       'api::sales-agent.sales-agent',
-      'manyToOne',
+      'manyToMany',
       'api::order.order'
     >;
     createdAt: Attribute.DateTime;
