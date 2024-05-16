@@ -62,14 +62,11 @@
     "orderProducts": {
       "type": "json"
     },
-    "salesAgent": {
-      "type": "enumeration",
-      "enum": [
-        "Agent A",
-        "Agent B",
-        "Agent C",
-        "Agent D"
-      ]
+    "sales_agents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sales-agent.sales-agent",
+      "mappedBy": "order"
     }
   }
 }

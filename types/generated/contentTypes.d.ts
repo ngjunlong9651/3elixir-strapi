@@ -390,8 +390,10 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     >;
     orderId: Attribute.String;
     orderProducts: Attribute.JSON;
-    salesAgent: Attribute.Enumeration<
-      ['Agent A', 'Agent B', 'Agent C', 'Agent D']
+    sales_agents: Attribute.Relation<
+      'api::order.order',
+      'oneToMany',
+      'api::sales-agent.sales-agent'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -557,6 +559,42 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSalesAgentSalesAgent extends Schema.CollectionType {
+  collectionName: 'sales_agents';
+  info: {
+    singularName: 'sales-agent';
+    pluralName: 'sales-agents';
+    displayName: 'salesAgent';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    agentID: Attribute.String;
+    name: Attribute.String;
+    order: Attribute.Relation<
+      'api::sales-agent.sales-agent',
+      'manyToOne',
+      'api::order.order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sales-agent.sales-agent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sales-agent.sales-agent',
       'oneToOne',
       'admin::user'
     > &
@@ -1002,6 +1040,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
+      'api::sales-agent.sales-agent': ApiSalesAgentSalesAgent;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
