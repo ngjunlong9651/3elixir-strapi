@@ -377,7 +377,6 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     customerName: Attribute.String;
     customerContact: Attribute.String;
     customerAddress: Attribute.String;
-    orderProducts: Attribute.RichText;
     remarks: Attribute.String;
     orderCollectionDateTime: Attribute.DateTime;
     orderStatus: Attribute.Enumeration<
@@ -390,6 +389,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       ['walk-in', 'amazon', 'carousell', 'website', 'b2b', 'b2c']
     >;
     orderId: Attribute.String;
+    orderProducts: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

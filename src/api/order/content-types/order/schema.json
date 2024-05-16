@@ -21,9 +21,6 @@
     "customerAddress": {
       "type": "string"
     },
-    "orderProducts": {
-      "type": "richtext"
-    },
     "remarks": {
       "type": "string"
     },
@@ -61,6 +58,9 @@
     },
     "orderId": {
       "type": "string"
+    },
+    "orderProducts": {
+      "type": "json"
     }
   }
 }
