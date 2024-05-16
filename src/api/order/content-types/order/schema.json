@@ -63,7 +63,13 @@
       "type": "json"
     },
     "salesAgent": {
-      "type": "string"
+      "type": "enumeration",
+      "enum": [
+        "Agent A",
+        "Agent B",
+        "Agent C",
+        "Agent D"
+      ]
     }
   }
 }
