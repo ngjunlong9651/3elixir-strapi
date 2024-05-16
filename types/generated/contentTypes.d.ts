@@ -390,6 +390,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     >;
     orderId: Attribute.String;
     orderProducts: Attribute.JSON;
+    salesAgent: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
