@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Red Wine",
+        "Cognac/Brandy",
+        "Sparkling Wine",
+        "Liqueur",
+        "Blended Whisky",
+        "Single Malt Whisky",
+        "Vodka",
+        "Exclusive Whisky",
+        "White Wine",
+        "Port Wine",
+        "Rum",
+        "Mixers & Etc",
+        "Tequila",
+        "Sake",
+        "Beer",
+        "Japanese Whisky",
+        "Soju",
+        "Gin",
+        "Baijiu",
+        "Rose"
+      ]
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "categories"
+    }
+  }
+}

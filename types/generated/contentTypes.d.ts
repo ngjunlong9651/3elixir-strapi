@@ -362,247 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiOrderOrder extends Schema.CollectionType {
-  collectionName: 'orders';
-  info: {
-    singularName: 'order';
-    pluralName: 'orders';
-    displayName: 'order';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    customerName: Attribute.String;
-    customerContact: Attribute.String;
-    customerAddress: Attribute.String;
-    remarks: Attribute.String;
-    orderCollectionDateTime: Attribute.DateTime;
-    orderStatus: Attribute.Enumeration<
-      ['Pending', 'Processing', 'Completed', 'Cancelled']
-    >;
-    paymentMethod: Attribute.Enumeration<
-      ['Cash', 'PayNow', 'PayLah', 'Credit Card']
-    >;
-    salesChannel: Attribute.Enumeration<
-      ['walk-in', 'amazon', 'carousell', 'website', 'b2b', 'b2c']
-    >;
-    orderId: Attribute.String;
-    orderProducts: Attribute.JSON;
-    sales_agents: Attribute.Relation<
-      'api::order.order',
-      'manyToMany',
-      'api::sales-agent.sales-agent'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiProductProduct extends Schema.CollectionType {
-  collectionName: 'products';
-  info: {
-    singularName: 'product';
-    pluralName: 'products';
-    displayName: 'product';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    'import-export-entries': {
-      idField: 'sku';
-    };
-  };
-  attributes: {
-    sku: Attribute.String & Attribute.Unique;
-    name: Attribute.String;
-    category: Attribute.Enumeration<
-      [
-        'Red Wine',
-        'Cognac/Brandy',
-        'Sparkling Wine',
-        'Liqueur',
-        'Blended Whisky',
-        'Single Malt Whisky',
-        'Vodka',
-        'Exclusive Whisky',
-        'White Wine',
-        'Port Wine',
-        'Rum',
-        'Tequila',
-        'Mixers & Etc',
-        'Sake',
-        'Beer',
-        'Gin',
-        'Japanese Whisky',
-        'Soju',
-        'Baijiu',
-        'Rose'
-      ]
-    >;
-    brand: Attribute.Enumeration<
-      [
-        'Agua Santa',
-        'Alfonso',
-        'Amami',
-        "Bailey's",
-        'Ballantine',
-        'Balvenie',
-        'Belvedere',
-        'Big Peat',
-        'Bols',
-        'Bowmore',
-        'Cabalie',
-        'Canasta',
-        "Captain Morgan's",
-        'Cattier',
-        'Chateau Mouton Rothschild',
-        'Chateau Pichon Baron',
-        'Chivas',
-        'Clase Azul',
-        "Cockburn's",
-        'Dalmore',
-        'Danzka',
-        'Dassai',
-        "Dead Man's Finger",
-        'Don Julio',
-        'Edizione',
-        'Epicurean',
-        'Gauldrons',
-        'Glenfiddich',
-        'Grey Goose',
-        'Handpicked',
-        'Heineken',
-        "Hendrick's",
-        'Hennessy',
-        'Hermitage',
-        'Hibiki',
-        'Hikari',
-        "Ichiro's",
-        'Jagermeister',
-        'Jinro',
-        'John Walker & Sons',
-        'Johnnie Walker',
-        'Key & Bricks',
-        'Kujira',
-        'Kweichow',
-        'Lagavulin',
-        'Laphroaig',
-        'Louis Xlll',
-        'Macallan',
-        "Maker's Mark",
-        'Manga Sake',
-        'Martell',
-        'Moet',
-        'Monkey Shoulder',
-        "Myer's",
-        'Nikka',
-        'Oban',
-        'Old Particular',
-        'Patron',
-        'Pierre Jean',
-        'Pogues',
-        'Macduff',
-        'Riporta',
-        'Rock Island',
-        'Roku',
-        'Rose Tattoo',
-        'Royal Salute',
-        'Ryusei',
-        'Sada',
-        'Sakura Gin',
-        'Salcis',
-        'Scallywag',
-        'Senjo',
-        'Singleton',
-        'Smirnoff',
-        'Strathearn',
-        'Sui',
-        'Suntory',
-        'Takanami',
-        'Tenjaku',
-        'Tequila Rose',
-        'The Kurayoshi',
-        'Timorous',
-        'Vecchia Romagna',
-        'Whitley Neill',
-        'XOP',
-        'Yamazaki',
-        'Zafiro',
-        'Mixers & Etc'
-      ]
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSalesAgentSalesAgent extends Schema.CollectionType {
-  collectionName: 'sales_agents';
-  info: {
-    singularName: 'sales-agent';
-    pluralName: 'sales-agents';
-    displayName: 'salesAgent';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    agentID: Attribute.String;
-    name: Attribute.String;
-    orders: Attribute.Relation<
-      'api::sales-agent.sales-agent',
-      'manyToMany',
-      'api::order.order'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::sales-agent.sales-agent',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::sales-agent.sales-agent',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -1029,6 +788,327 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiBrandBrand extends Schema.CollectionType {
+  collectionName: 'brands';
+  info: {
+    singularName: 'brand';
+    pluralName: 'brands';
+    displayName: 'brand';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    brand: Attribute.Enumeration<
+      [
+        'Agua Santa',
+        'Alfonso',
+        'Amami',
+        "Bailey's",
+        'Ballantine',
+        'Balvenie',
+        'Belvedere',
+        'Big Peat',
+        'Bols',
+        'Bowmore',
+        'Cabalie',
+        'Canasta',
+        "Captain Morgan's",
+        'Cattier',
+        'Chateau Mouton Rothschild',
+        'Chateau Pichon Baron',
+        'Chivas',
+        'Clase Azul',
+        "Cockburn's",
+        'Mixers & Etc',
+        'Dalmore',
+        'Danzka',
+        'Dassai',
+        "Dead Man's Finger",
+        'Don Julio',
+        'Edizione',
+        'Epicurean',
+        'Gauldrons',
+        'Glenfiddich',
+        'Grey Goose',
+        'Handpicked',
+        'Heineken',
+        "Hendrick's",
+        'Hennessy',
+        'Hermitage',
+        'Hibiki',
+        'Hikari',
+        "Ichiro's",
+        'Jagermeister',
+        'Jinro',
+        'John Walker & Sons',
+        'Johnnie Walker',
+        'Key & Bricks',
+        'Kujira',
+        'Kweichow',
+        'Lagavulin',
+        'Laphroaig',
+        'Louis Xlll',
+        'Macallan',
+        "Maker's Mark",
+        'Manga Sake',
+        'Martell',
+        'Moet',
+        'Monkey Shoulder',
+        "Myer's",
+        'Nikka',
+        'Oban',
+        'Old Particular',
+        'Patron',
+        'Pierre Jean',
+        'Pogues',
+        'Macduff',
+        'Riporta',
+        'Rock Island',
+        'Roku',
+        'Rose Tattoo',
+        'Royal Salute',
+        'Ryusei',
+        'Sada',
+        'Sakura Gin',
+        'Salcis',
+        'Scallywag',
+        'Senjo',
+        'Singleton',
+        'Smirnoff',
+        'Strathearn',
+        'Sui',
+        'Suntory',
+        'Takanami',
+        'Tenjaku',
+        'Tequila Rose',
+        'The Kurayoshi',
+        'Timorous',
+        'Vecchia Romagna',
+        'Whitley Neill',
+        'XOP',
+        'Yamazaki',
+        'Zafiro'
+      ]
+    >;
+    products: Attribute.Relation<
+      'api::brand.brand',
+      'manyToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Attribute.Enumeration<
+      [
+        'Red Wine',
+        'Cognac/Brandy',
+        'Sparkling Wine',
+        'Liqueur',
+        'Blended Whisky',
+        'Single Malt Whisky',
+        'Vodka',
+        'Exclusive Whisky',
+        'White Wine',
+        'Port Wine',
+        'Rum',
+        'Mixers & Etc',
+        'Tequila',
+        'Sake',
+        'Beer',
+        'Japanese Whisky',
+        'Soju',
+        'Gin',
+        'Baijiu',
+        'Rose'
+      ]
+    >;
+    products: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderOrder extends Schema.CollectionType {
+  collectionName: 'orders';
+  info: {
+    singularName: 'order';
+    pluralName: 'orders';
+    displayName: 'order';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    customerName: Attribute.String;
+    customerContact: Attribute.String;
+    customerAddress: Attribute.String;
+    remarks: Attribute.String;
+    orderCollectionDateTime: Attribute.DateTime;
+    orderStatus: Attribute.Enumeration<
+      ['Pending', 'Processing', 'Completed', 'Cancelled']
+    >;
+    paymentMethod: Attribute.Enumeration<
+      ['Cash', 'PayNow', 'PayLah', 'Credit Card']
+    >;
+    salesChannel: Attribute.Enumeration<
+      ['walk-in', 'amazon', 'carousell', 'website', 'b2b', 'b2c']
+    >;
+    orderId: Attribute.String;
+    orderProducts: Attribute.JSON;
+    sales_agents: Attribute.Relation<
+      'api::order.order',
+      'manyToMany',
+      'api::sales-agent.sales-agent'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    'import-export-entries': {
+      idField: 'sku';
+    };
+  };
+  attributes: {
+    sku: Attribute.String & Attribute.Unique;
+    name: Attribute.String;
+    brands: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::brand.brand'
+    >;
+    categories: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSalesAgentSalesAgent extends Schema.CollectionType {
+  collectionName: 'sales_agents';
+  info: {
+    singularName: 'sales-agent';
+    pluralName: 'sales-agents';
+    displayName: 'salesAgent';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    orders: Attribute.Relation<
+      'api::sales-agent.sales-agent',
+      'manyToMany',
+      'api::order.order'
+    >;
+    agentID: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sales-agent.sales-agent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sales-agent.sales-agent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1039,9 +1119,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::order.order': ApiOrderOrder;
-      'api::product.product': ApiProductProduct;
-      'api::sales-agent.sales-agent': ApiSalesAgentSalesAgent;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -1050,6 +1127,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::brand.brand': ApiBrandBrand;
+      'api::category.category': ApiCategoryCategory;
+      'api::order.order': ApiOrderOrder;
+      'api::product.product': ApiProductProduct;
+      'api::sales-agent.sales-agent': ApiSalesAgentSalesAgent;
     }
   }
 }

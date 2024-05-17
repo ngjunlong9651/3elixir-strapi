@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "agentID": {
-      "type": "string"
-    },
     "name": {
       "type": "string"
     },
@@ -23,6 +20,9 @@
       "relation": "manyToMany",
       "target": "api::order.order",
       "inversedBy": "sales_agents"
+    },
+    "agentID": {
+      "type": "string"
     }
   }
 }
