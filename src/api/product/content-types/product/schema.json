@@ -23,15 +23,15 @@
     "name": {
       "type": "string"
     },
-    "brands": {
+    "brand": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::brand.brand",
       "inversedBy": "products"
     },
-    "categories": {
+    "category": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "products"
     }

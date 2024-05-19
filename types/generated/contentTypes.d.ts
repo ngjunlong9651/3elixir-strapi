@@ -894,7 +894,7 @@ export interface ApiBrandBrand extends Schema.CollectionType {
     >;
     products: Attribute.Relation<
       'api::brand.brand',
-      'manyToMany',
+      'oneToMany',
       'api::product.product'
     >;
     createdAt: Attribute.DateTime;
@@ -953,7 +953,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     >;
     products: Attribute.Relation<
       'api::category.category',
-      'manyToMany',
+      'oneToMany',
       'api::product.product'
     >;
     createdAt: Attribute.DateTime;
@@ -1044,14 +1044,14 @@ export interface ApiProductProduct extends Schema.CollectionType {
   attributes: {
     sku: Attribute.String & Attribute.Unique;
     name: Attribute.String;
-    brands: Attribute.Relation<
+    brand: Attribute.Relation<
       'api::product.product',
-      'manyToMany',
+      'manyToOne',
       'api::brand.brand'
     >;
-    categories: Attribute.Relation<
+    category: Attribute.Relation<
       'api::product.product',
-      'manyToMany',
+      'manyToOne',
       'api::category.category'
     >;
     createdAt: Attribute.DateTime;
