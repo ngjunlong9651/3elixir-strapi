@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sales_channels",
+  "info": {
+    "singularName": "sales-channel",
+    "pluralName": "sales-channels",
+    "displayName": "salesChannel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "salesChannel": {
+      "type": "string"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "sales_channel"
+    }
+  }
+}

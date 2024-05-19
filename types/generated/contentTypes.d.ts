@@ -991,21 +991,27 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     customerAddress: Attribute.String;
     remarks: Attribute.String;
     orderCollectionDateTime: Attribute.DateTime;
-    orderStatus: Attribute.Enumeration<
-      ['Pending', 'Processing', 'Completed', 'Cancelled']
-    >;
-    paymentMethod: Attribute.Enumeration<
-      ['Cash', 'PayNow', 'PayLah', 'Credit Card']
-    >;
-    salesChannel: Attribute.Enumeration<
-      ['walk-in', 'amazon', 'carousell', 'website', 'b2b', 'b2c']
-    >;
     orderId: Attribute.String;
     orderProducts: Attribute.JSON;
     sales_agents: Attribute.Relation<
       'api::order.order',
       'manyToMany',
       'api::sales-agent.sales-agent'
+    >;
+    payment_method: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::payment-method.payment-method'
+    >;
+    sales_channel: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::sales-channel.sales-channel'
+    >;
+    order_status: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::order-status.order-status'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1018,6 +1024,78 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderStatusOrderStatus extends Schema.CollectionType {
+  collectionName: 'order_statuses';
+  info: {
+    singularName: 'order-status';
+    pluralName: 'order-statuses';
+    displayName: 'orderStatus';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    orderStatus: Attribute.String;
+    orders: Attribute.Relation<
+      'api::order-status.order-status',
+      'oneToMany',
+      'api::order.order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order-status.order-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order-status.order-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
+  collectionName: 'payment_methods';
+  info: {
+    singularName: 'payment-method';
+    pluralName: 'payment-methods';
+    displayName: 'paymentMethod';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    paymentMethod: Attribute.String;
+    orders: Attribute.Relation<
+      'api::payment-method.payment-method',
+      'oneToMany',
+      'api::order.order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment-method.payment-method',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::payment-method.payment-method',
       'oneToOne',
       'admin::user'
     > &
@@ -1109,6 +1187,42 @@ export interface ApiSalesAgentSalesAgent extends Schema.CollectionType {
   };
 }
 
+export interface ApiSalesChannelSalesChannel extends Schema.CollectionType {
+  collectionName: 'sales_channels';
+  info: {
+    singularName: 'sales-channel';
+    pluralName: 'sales-channels';
+    displayName: 'salesChannel';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    salesChannel: Attribute.String;
+    orders: Attribute.Relation<
+      'api::sales-channel.sales-channel',
+      'oneToMany',
+      'api::order.order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sales-channel.sales-channel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sales-channel.sales-channel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1130,8 +1244,11 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::order.order': ApiOrderOrder;
+      'api::order-status.order-status': ApiOrderStatusOrderStatus;
+      'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::product.product': ApiProductProduct;
       'api::sales-agent.sales-agent': ApiSalesAgentSalesAgent;
+      'api::sales-channel.sales-channel': ApiSalesChannelSalesChannel;
     }
   }
 }

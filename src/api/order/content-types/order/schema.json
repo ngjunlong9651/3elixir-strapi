@@ -27,35 +27,6 @@
     "orderCollectionDateTime": {
       "type": "datetime"
     },
-    "orderStatus": {
-      "type": "enumeration",
-      "enum": [
-        "Pending",
-        "Processing",
-        "Completed",
-        "Cancelled"
-      ]
-    },
-    "paymentMethod": {
-      "type": "enumeration",
-      "enum": [
-        "Cash",
-        "PayNow",
-        "PayLah",
-        "Credit Card"
-      ]
-    },
-    "salesChannel": {
-      "type": "enumeration",
-      "enum": [
-        "walk-in",
-        "amazon",
-        "carousell",
-        "website",
-        "b2b",
-        "b2c"
-      ]
-    },
     "orderId": {
       "type": "string"
     },
@@ -67,6 +38,24 @@
       "relation": "manyToMany",
       "target": "api::sales-agent.sales-agent",
       "mappedBy": "orders"
+    },
+    "payment_method": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::payment-method.payment-method",
+      "inversedBy": "orders"
+    },
+    "sales_channel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sales-channel.sales-channel",
+      "inversedBy": "orders"
+    },
+    "order_status": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order-status.order-status",
+      "inversedBy": "orders"
     }
   }
 }
