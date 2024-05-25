@@ -974,6 +974,41 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiDeliveryMethodDeliveryMethod extends Schema.CollectionType {
+  collectionName: 'delivery_methods';
+  info: {
+    singularName: 'delivery-method';
+    pluralName: 'delivery-methods';
+    displayName: 'deliveryMethod';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    deliveryMethod: Attribute.String;
+    orders: Attribute.Relation<
+      'api::delivery-method.delivery-method',
+      'oneToMany',
+      'api::order.order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::delivery-method.delivery-method',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::delivery-method.delivery-method',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiOrderOrder extends Schema.CollectionType {
   collectionName: 'orders';
   info: {
@@ -1013,6 +1048,17 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'manyToOne',
       'api::order-status.order-status'
     >;
+    payment_status: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::payment-status.payment-status'
+    >;
+    delivery_method: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::delivery-method.delivery-method'
+    >;
+    telegramMessage: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1096,6 +1142,41 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::payment-method.payment-method',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPaymentStatusPaymentStatus extends Schema.CollectionType {
+  collectionName: 'payment_statuses';
+  info: {
+    singularName: 'payment-status';
+    pluralName: 'payment-statuses';
+    displayName: 'paymentStatus';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    paymentStatus: Attribute.String;
+    orders: Attribute.Relation<
+      'api::payment-status.payment-status',
+      'oneToMany',
+      'api::order.order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment-status.payment-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::payment-status.payment-status',
       'oneToOne',
       'admin::user'
     > &
@@ -1243,9 +1324,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
+      'api::delivery-method.delivery-method': ApiDeliveryMethodDeliveryMethod;
       'api::order.order': ApiOrderOrder;
       'api::order-status.order-status': ApiOrderStatusOrderStatus;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
+      'api::payment-status.payment-status': ApiPaymentStatusPaymentStatus;
       'api::product.product': ApiProductProduct;
       'api::sales-agent.sales-agent': ApiSalesAgentSalesAgent;
       'api::sales-channel.sales-channel': ApiSalesChannelSalesChannel;

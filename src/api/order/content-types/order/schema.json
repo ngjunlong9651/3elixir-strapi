@@ -56,6 +56,21 @@
       "relation": "manyToOne",
       "target": "api::order-status.order-status",
       "inversedBy": "orders"
+    },
+    "payment_status": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::payment-status.payment-status",
+      "inversedBy": "orders"
+    },
+    "delivery_method": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::delivery-method.delivery-method",
+      "inversedBy": "orders"
+    },
+    "telegramMessage": {
+      "type": "json"
     }
   }
 }
