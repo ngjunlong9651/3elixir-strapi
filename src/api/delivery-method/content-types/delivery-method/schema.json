@@ -4,21 +4,22 @@
   "info": {
     "singularName": "delivery-method",
     "pluralName": "delivery-methods",
-    "displayName": "deliveryMethod"
+    "displayName": "deliveryMethod",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "deliveryMethod": {
+    "fulfilmentMethod": {
       "type": "string"
     },
     "orders": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::order.order",
-      "mappedBy": "delivery_method"
+      "mappedBy": "fulfilment_method"
     }
   }
 }

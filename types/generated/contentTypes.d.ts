@@ -980,12 +980,13 @@ export interface ApiDeliveryMethodDeliveryMethod extends Schema.CollectionType {
     singularName: 'delivery-method';
     pluralName: 'delivery-methods';
     displayName: 'deliveryMethod';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    deliveryMethod: Attribute.String;
+    fulfilmentMethod: Attribute.String;
     orders: Attribute.Relation<
       'api::delivery-method.delivery-method',
       'oneToMany',
@@ -1053,7 +1054,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'manyToOne',
       'api::payment-status.payment-status'
     >;
-    delivery_method: Attribute.Relation<
+    fulfilment_method: Attribute.Relation<
       'api::order.order',
       'manyToOne',
       'api::delivery-method.delivery-method'
