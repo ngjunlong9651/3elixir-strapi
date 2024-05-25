@@ -1021,13 +1021,13 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    customerName: Attribute.String;
-    customerContact: Attribute.String;
+    customerName: Attribute.String & Attribute.Required;
+    customerContact: Attribute.String & Attribute.Required;
     customerAddress: Attribute.String;
     remarks: Attribute.String;
     orderCollectionDateTime: Attribute.DateTime;
     orderId: Attribute.String;
-    orderProducts: Attribute.JSON;
+    orderProducts: Attribute.JSON & Attribute.Required;
     sales_agents: Attribute.Relation<
       'api::order.order',
       'manyToMany',
@@ -1059,6 +1059,9 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::delivery-method.delivery-method'
     >;
     telegramMessage: Attribute.JSON;
+    fulfilmentStart: Attribute.DateTime;
+    fulfilmentEnd: Attribute.DateTime;
+    deliveryFee: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

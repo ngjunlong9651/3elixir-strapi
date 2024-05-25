@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "customerName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "customerContact": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "customerAddress": {
       "type": "string"
@@ -31,7 +33,8 @@
       "type": "string"
     },
     "orderProducts": {
-      "type": "json"
+      "type": "json",
+      "required": true
     },
     "sales_agents": {
       "type": "relation",
@@ -71,6 +74,15 @@
     },
     "telegramMessage": {
       "type": "json"
+    },
+    "fulfilmentStart": {
+      "type": "datetime"
+    },
+    "fulfilmentEnd": {
+      "type": "datetime"
+    },
+    "deliveryFee": {
+      "type": "decimal"
     }
   }
 }
