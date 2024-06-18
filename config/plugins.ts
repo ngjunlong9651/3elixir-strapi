@@ -4,8 +4,8 @@ export default ({ env }) => ({
     enabled: true,
     config: {
       ratelimit: {
-        interval: 100000,
-        max: 100000,
+        interval: 1000000000,
+        max: 1000000000,
       },
       // See `Config` section.
     },
