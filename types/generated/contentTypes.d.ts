@@ -889,7 +889,8 @@ export interface ApiBrandBrand extends Schema.CollectionType {
         'Whitley Neill',
         'XOP',
         'Yamazaki',
-        'Zafiro'
+        'Zafiro',
+        'Bryan Test'
       ]
     >;
     products: Attribute.Relation<
