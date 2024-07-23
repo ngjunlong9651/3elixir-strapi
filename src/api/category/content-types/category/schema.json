@@ -13,29 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "category": {
-      "type": "enumeration",
-      "enum": [
-        "Red Wine",
-        "Cognac/Brandy",
-        "Sparkling Wine",
-        "Liqueur",
-        "Blended Whisky",
-        "Single Malt Whisky",
-        "Vodka",
-        "Exclusive Whisky",
-        "White Wine",
-        "Port Wine",
-        "Rum",
-        "Mixers & Etc",
-        "Tequila",
-        "Sake",
-        "Beer",
-        "Japanese Whisky",
-        "Soju",
-        "Gin",
-        "Baijiu",
-        "Rose"
-      ]
+      "type": "string"
     },
     "products": {
       "type": "relation",

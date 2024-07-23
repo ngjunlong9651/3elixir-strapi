@@ -800,104 +800,12 @@ export interface ApiBrandBrand extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    brand: Attribute.Enumeration<
-      [
-        'Agua Santa',
-        'Alfonso',
-        'Amami',
-        "Bailey's",
-        'Ballantine',
-        'Balvenie',
-        'Belvedere',
-        'Big Peat',
-        'Bols',
-        'Bowmore',
-        'Cabalie',
-        'Canasta',
-        "Captain Morgan's",
-        'Cattier',
-        'Chateau Mouton Rothschild',
-        'Chateau Pichon Baron',
-        'Chivas',
-        'Clase Azul',
-        "Cockburn's",
-        'Mixers & Etc',
-        'Dalmore',
-        'Danzka',
-        'Dassai',
-        "Dead Man's Finger",
-        'Don Julio',
-        'Edizione',
-        'Epicurean',
-        'Gauldrons',
-        'Glenfiddich',
-        'Grey Goose',
-        'Handpicked',
-        'Heineken',
-        "Hendrick's",
-        'Hennessy',
-        'Hermitage',
-        'Hibiki',
-        'Hikari',
-        "Ichiro's",
-        'Jagermeister',
-        'Jinro',
-        'John Walker & Sons',
-        'Johnnie Walker',
-        'Key & Bricks',
-        'Kujira',
-        'Kweichow',
-        'Lagavulin',
-        'Laphroaig',
-        'Louis Xlll',
-        'Macallan',
-        "Maker's Mark",
-        'Manga Sake',
-        'Martell',
-        'Moet',
-        'Monkey Shoulder',
-        "Myer's",
-        'Nikka',
-        'Oban',
-        'Old Particular',
-        'Patron',
-        'Pierre Jean',
-        'Pogues',
-        'Macduff',
-        'Riporta',
-        'Rock Island',
-        'Roku',
-        'Rose Tattoo',
-        'Royal Salute',
-        'Ryusei',
-        'Sada',
-        'Sakura Gin',
-        'Salcis',
-        'Scallywag',
-        'Senjo',
-        'Singleton',
-        'Smirnoff',
-        'Strathearn',
-        'Sui',
-        'Suntory',
-        'Takanami',
-        'Tenjaku',
-        'Tequila Rose',
-        'The Kurayoshi',
-        'Timorous',
-        'Vecchia Romagna',
-        'Whitley Neill',
-        'XOP',
-        'Yamazaki',
-        'Zafiro',
-        'Bryan Test'
-      ]
-    >;
     products: Attribute.Relation<
       'api::brand.brand',
       'oneToMany',
       'api::product.product'
     >;
+    brand: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -928,30 +836,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    category: Attribute.Enumeration<
-      [
-        'Red Wine',
-        'Cognac/Brandy',
-        'Sparkling Wine',
-        'Liqueur',
-        'Blended Whisky',
-        'Single Malt Whisky',
-        'Vodka',
-        'Exclusive Whisky',
-        'White Wine',
-        'Port Wine',
-        'Rum',
-        'Mixers & Etc',
-        'Tequila',
-        'Sake',
-        'Beer',
-        'Japanese Whisky',
-        'Soju',
-        'Gin',
-        'Baijiu',
-        'Rose'
-      ]
-    >;
+    category: Attribute.String;
     products: Attribute.Relation<
       'api::category.category',
       'oneToMany',
