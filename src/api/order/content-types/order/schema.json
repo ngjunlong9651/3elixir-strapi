@@ -83,6 +83,9 @@
     },
     "deliveryFee": {
       "type": "decimal"
+    },
+    "attention":{
+      "type":"string"
     }
   }
 }
