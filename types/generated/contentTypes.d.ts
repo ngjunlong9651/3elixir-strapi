@@ -800,99 +800,7 @@ export interface ApiBrandBrand extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    brand: Attribute.Enumeration<
-      [
-        'Agua Santa',
-        'Alfonso',
-        'Amami',
-        "Bailey's",
-        'Ballantine',
-        'Balvenie',
-        'Belvedere',
-        'Big Peat',
-        'Bols',
-        'Bowmore',
-        'Cabalie',
-        'Canasta',
-        "Captain Morgan's",
-        'Cattier',
-        'Chateau Mouton Rothschild',
-        'Chateau Pichon Baron',
-        'Chivas',
-        'Clase Azul',
-        "Cockburn's",
-        'Mixers & Etc',
-        'Dalmore',
-        'Danzka',
-        'Dassai',
-        "Dead Man's Finger",
-        'Don Julio',
-        'Edizione',
-        'Epicurean',
-        'Gauldrons',
-        'Glenfiddich',
-        'Grey Goose',
-        'Handpicked',
-        'Heineken',
-        "Hendrick's",
-        'Hennessy',
-        'Hermitage',
-        'Hibiki',
-        'Hikari',
-        "Ichiro's",
-        'Jagermeister',
-        'Jinro',
-        'John Walker & Sons',
-        'Johnnie Walker',
-        'Key & Bricks',
-        'Kujira',
-        'Kweichow',
-        'Lagavulin',
-        'Laphroaig',
-        'Louis Xlll',
-        'Macallan',
-        "Maker's Mark",
-        'Manga Sake',
-        'Martell',
-        'Moet',
-        'Monkey Shoulder',
-        "Myer's",
-        'Nikka',
-        'Oban',
-        'Old Particular',
-        'Patron',
-        'Pierre Jean',
-        'Pogues',
-        'Macduff',
-        'Riporta',
-        'Rock Island',
-        'Roku',
-        'Rose Tattoo',
-        'Royal Salute',
-        'Ryusei',
-        'Sada',
-        'Sakura Gin',
-        'Salcis',
-        'Scallywag',
-        'Senjo',
-        'Singleton',
-        'Smirnoff',
-        'Strathearn',
-        'Sui',
-        'Suntory',
-        'Takanami',
-        'Tenjaku',
-        'Tequila Rose',
-        'The Kurayoshi',
-        'Timorous',
-        'Vecchia Romagna',
-        'Whitley Neill',
-        'XOP',
-        'Yamazaki',
-        'Zafiro',
-        'Bryan Test'
-      ]
-    >;
+    brand: Attribute.String;
     products: Attribute.Relation<
       'api::brand.brand',
       'oneToMany',
@@ -928,30 +836,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    category: Attribute.Enumeration<
-      [
-        'Red Wine',
-        'Cognac/Brandy',
-        'Sparkling Wine',
-        'Liqueur',
-        'Blended Whisky',
-        'Single Malt Whisky',
-        'Vodka',
-        'Exclusive Whisky',
-        'White Wine',
-        'Port Wine',
-        'Rum',
-        'Mixers & Etc',
-        'Tequila',
-        'Sake',
-        'Beer',
-        'Japanese Whisky',
-        'Soju',
-        'Gin',
-        'Baijiu',
-        'Rose'
-      ]
-    >;
+    category: Attribute.String;
     products: Attribute.Relation<
       'api::category.category',
       'oneToMany',
@@ -968,6 +853,90 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCustomerCustomer extends Schema.CollectionType {
+  collectionName: 'customers';
+  info: {
+    singularName: 'customer';
+    pluralName: 'customers';
+    displayName: 'Customer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    customerName: Attribute.String;
+    customerContact: Attribute.String;
+    customerAddress: Attribute.String;
+    sales_channel: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'api::sales-channel.sales-channel'
+    >;
+    customer_product: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'api::customer-product.customer-product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCustomerProductCustomerProduct
+  extends Schema.CollectionType {
+  collectionName: 'customer_products';
+  info: {
+    singularName: 'customer-product';
+    pluralName: 'customer-products';
+    displayName: 'customerProduct';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    customer: Attribute.Relation<
+      'api::customer-product.customer-product',
+      'oneToOne',
+      'api::customer.customer'
+    >;
+    product: Attribute.Relation<
+      'api::customer-product.customer-product',
+      'oneToOne',
+      'api::product.product'
+    >;
+    price: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer-product.customer-product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer-product.customer-product',
       'oneToOne',
       'admin::user'
     > &
@@ -1064,6 +1033,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     fulfilmentStart: Attribute.DateTime;
     fulfilmentEnd: Attribute.DateTime;
     deliveryFee: Attribute.Decimal;
+    attention: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1218,6 +1188,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::category.category'
     >;
+    customer_product: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::customer-product.customer-product'
+    >;
+    defaultPrice: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1291,6 +1267,11 @@ export interface ApiSalesChannelSalesChannel extends Schema.CollectionType {
       'oneToMany',
       'api::order.order'
     >;
+    customer: Attribute.Relation<
+      'api::sales-channel.sales-channel',
+      'oneToOne',
+      'api::customer.customer'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1329,6 +1310,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
+      'api::customer.customer': ApiCustomerCustomer;
+      'api::customer-product.customer-product': ApiCustomerProductCustomerProduct;
       'api::delivery-method.delivery-method': ApiDeliveryMethodDeliveryMethod;
       'api::order.order': ApiOrderOrder;
       'api::order-status.order-status': ApiOrderStatusOrderStatus;

@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customer_products",
+  "info": {
+    "singularName": "customer-product",
+    "pluralName": "customer-products",
+    "displayName": "customerProduct"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "customer_product"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product",
+      "inversedBy": "customer_product"
+    },
+    "price": {
+      "type": "decimal"
+    }
+  }
+}

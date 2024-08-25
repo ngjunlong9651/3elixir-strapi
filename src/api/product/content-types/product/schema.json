@@ -34,6 +34,15 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "customer_product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer-product.customer-product",
+      "mappedBy": "product"
+    },
+    "defaultPrice": {
+      "type": "decimal"
     }
   }
 }

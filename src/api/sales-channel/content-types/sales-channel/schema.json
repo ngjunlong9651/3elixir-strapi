@@ -20,6 +20,12 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "sales_channel"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer",
+      "mappedBy": "sales_channel"
     }
   }
 }
