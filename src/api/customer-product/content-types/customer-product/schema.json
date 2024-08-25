@@ -12,17 +12,17 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "customers": {
+    "customer": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::customer.customer",
-      "mappedBy": "customer_product"
+      "inversedBy": "customer_products"
     },
-    "products": {
+    "product": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::product.product",
-      "mappedBy": "customer_product"
+      "inversedBy": "customer_products"
     },
     "price": {
       "type": "decimal"

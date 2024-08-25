@@ -4,7 +4,7 @@
   "info": {
     "singularName": "customer",
     "pluralName": "customers",
-    "displayName": "Customer",
+    "displayName": "customer",
     "description": ""
   },
   "options": {
@@ -27,11 +27,11 @@
       "target": "api::sales-channel.sales-channel",
       "inversedBy": "customer"
     },
-    "customer_product": {
+    "customer_products": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::customer-product.customer-product",
-      "inversedBy": "customers"
+      "mappedBy": "customer"
     }
   }
 }

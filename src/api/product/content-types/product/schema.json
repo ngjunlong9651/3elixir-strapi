@@ -38,11 +38,11 @@
     "defaultPrice": {
       "type": "decimal"
     },
-    "customer_product": {
+    "customer_products": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::customer-product.customer-product",
-      "inversedBy": "products"
+      "mappedBy": "product"
     }
   }
 }
