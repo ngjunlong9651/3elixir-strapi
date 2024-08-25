@@ -4,24 +4,25 @@
   "info": {
     "singularName": "customer-product",
     "pluralName": "customer-products",
-    "displayName": "customerProduct"
+    "displayName": "customerProduct",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "customer": {
+    "customers": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::customer.customer",
-      "inversedBy": "customer_product"
+      "mappedBy": "customer_product"
     },
-    "product": {
+    "products": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::product.product",
-      "inversedBy": "customer_product"
+      "mappedBy": "customer_product"
     },
     "price": {
       "type": "decimal"

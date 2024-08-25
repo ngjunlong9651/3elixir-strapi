@@ -882,7 +882,7 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     >;
     customer_product: Attribute.Relation<
       'api::customer.customer',
-      'oneToOne',
+      'manyToOne',
       'api::customer-product.customer-product'
     >;
     createdAt: Attribute.DateTime;
@@ -910,19 +910,20 @@ export interface ApiCustomerProductCustomerProduct
     singularName: 'customer-product';
     pluralName: 'customer-products';
     displayName: 'customerProduct';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    customer: Attribute.Relation<
+    customers: Attribute.Relation<
       'api::customer-product.customer-product',
-      'oneToOne',
+      'oneToMany',
       'api::customer.customer'
     >;
-    product: Attribute.Relation<
+    products: Attribute.Relation<
       'api::customer-product.customer-product',
-      'oneToOne',
+      'oneToMany',
       'api::product.product'
     >;
     price: Attribute.Decimal;
@@ -1188,12 +1189,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::category.category'
     >;
+    defaultPrice: Attribute.Decimal;
     customer_product: Attribute.Relation<
       'api::product.product',
-      'oneToOne',
+      'manyToOne',
       'api::customer-product.customer-product'
     >;
-    defaultPrice: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -29,9 +29,9 @@
     },
     "customer_product": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::customer-product.customer-product",
-      "mappedBy": "customer"
+      "inversedBy": "customers"
     }
   }
 }
