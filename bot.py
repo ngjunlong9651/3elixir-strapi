@@ -7,7 +7,7 @@ from telegram.ext import Application, CallbackQueryHandler, CommandHandler, Cont
 # Load environment variables
 load_dotenv()
 
-# Set up logging to a file
+# Set up logging to a file with info level
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(message)s",
