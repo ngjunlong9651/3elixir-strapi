@@ -1034,7 +1034,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     fulfilmentStart: Attribute.DateTime;
     fulfilmentEnd: Attribute.DateTime;
     deliveryFee: Attribute.Decimal;
-    attention: Attribute.String;
+    attentionTo: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
