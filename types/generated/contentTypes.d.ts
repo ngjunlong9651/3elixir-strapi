@@ -877,7 +877,7 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     customerAddress: Attribute.String;
     sales_channel: Attribute.Relation<
       'api::customer.customer',
-      'oneToOne',
+      'manyToOne',
       'api::sales-channel.sales-channel'
     >;
     customer_products: Attribute.Relation<
@@ -1268,9 +1268,9 @@ export interface ApiSalesChannelSalesChannel extends Schema.CollectionType {
       'oneToMany',
       'api::order.order'
     >;
-    customer: Attribute.Relation<
+    customers: Attribute.Relation<
       'api::sales-channel.sales-channel',
-      'oneToOne',
+      'oneToMany',
       'api::customer.customer'
     >;
     createdAt: Attribute.DateTime;

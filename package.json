@@ -1,12 +1,16 @@
 {
   "name": "from-zero-to-hero",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
   "scripts": {
+    "build": "strapi build",
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
     "strapi": "strapi"
   },
   "dependencies": {
@@ -24,15 +28,11 @@
     "strapi-plugin-import-export-entries": "^1.23.1",
     "styled-components": "5.3.3"
   },
-  "author": {
-    "name": "A Strapi developer"
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": ">=6.0.0"
   },
   "strapi": {
     "uuid": "d11cfcf1-46ae-44b3-99b2-74cf0cc7de89"
-  },
-  "engines": {
-    "node": ">=18.0.0 <=20.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+  }
 }

@@ -23,9 +23,9 @@
     },
     "sales_channel": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::sales-channel.sales-channel",
-      "inversedBy": "customer"
+      "inversedBy": "customers"
     },
     "customer_products": {
       "type": "relation",
